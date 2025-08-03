@@ -7,5 +7,5 @@ tar xzf gptfdisk-1.0.10.tar.gz
 cd gptfdisk-1.0.10
 export CXXFLAGS='-O2 -pipe -static -static-libstdc++ -static-libgcc -fno-pie'
 export LDFLAGS='-static -static-libstdc++ -static-libgcc -no-pie'
-make V=1 sgdisk LDFLAGS=$LDFLAGS
+make V=1 sgdisk LDFLAGS="$LDFLAGS"
 strip -s sgdisk
