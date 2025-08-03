@@ -1,0 +1,28 @@
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+      - name: deps
+        run: |
+          sudo apt -y update
+          sudo apt -y install build-essential autoconf automake libtool pkg-config flex bison gettext uuid-dev libpopt-dev
+      - name: build
+        run: |
+          bash build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sgdisk
+          path: gptfdisk-1.0.10/sgdisk
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: gptfdisk-1.0.10/sgdisk
+          asset_name: sgdisk
+          tag: v1.0.10
+          overwrite: true
+          body: 'sgdisk 1.0.10'
