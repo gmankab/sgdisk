@@ -1,1 +1,3 @@
-### sgdisk static binary for arm64
+### sgdisk arm64 static binary
+
+used by [pocketblue](https://github.com/pocketblue/pocketblue) installation script for mipad5
